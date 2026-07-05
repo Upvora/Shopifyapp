@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {{ content_for_header }}
+
+    {% # All visual decisions are tokens. The AI writes settings, never CSS. %}
+    {%- liquid
+      assign body_font = settings.type_body_font
+      assign heading_font = settings.type_heading_font
+      assign body_font_bold = body_font | font_modify: 'weight', 'bolder'
+      assign body_font_italic = body_font | font_modify: 'style', 'italic'
+    -%}
+
+    <style>
+      {{ body_font | font_face: font_display: 'swap' }}
+      {{ body_font_bold | font_face: font_display: 'swap' }}
+      {{ body_font_italic | font_face: font_display: 'swap' }}
+      {{ heading_font | font_face: font_display: 'swap' }}
+
+      :root {
+        --color-background: {{ settings.color_background }};
+        --color-surface: {{ settings.color_surface }};
+        --color-text: {{ settings.color_text }};
+        --color-text-subdued: {{ settings.color_text_subdued }};
+        --color-accent: {{ settings.color_accent }};
+        --color-on-accent: {{ settings.color_on_accent }};
+        --color-border: {{ settings.color_border }};
+
+        --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --font-body-weight: {{ body_font.weight }};
+        --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --font-heading-weight: {{ heading_font.weight }};
+        --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+        --body-size: {{ settings.body_size }}px;
+        --heading-letter-spacing: {{ settings.heading_letter_spacing | divided_by: 1000.0 }}em;
+
+        --page-width: {{ settings.page_width }}px;
+        --space-unit: {{ settings.spacing_scale | divided_by: 100.0 }}rem;
+        --section-space: calc(var(--space-unit) * {{ settings.section_spacing }});
+        --grid-gap: calc(var(--space-unit) * 1.5);
+
+        --radius: {{ settings.corner_radius }}px;
+        --radius-button: {{ settings.button_corner_radius }}px;
+        --border-width: {{ settings.border_width }}px;
+      }
+    </style>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+  </head>
+
+  <body class="button-style-{{ settings.button_style }}">
+    <a class="skip-to-content visually-hidden" href="#MainContent">
+      {{ 'general.accessibility.skip_to_content' | t }}
+    </a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="main-content" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+  </body>
+</html>
