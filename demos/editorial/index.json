@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "hero_0": {
+      "type": "image-banner",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "rich_text_1": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "featured_collection_2": {
+      "type": "featured-collection",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_3": {
+      "type": "image-with-text",
+      "settings": {
+        "color_scheme": "scheme-5"
+      }
+    },
+    "featured_collection_4": {
+      "type": "featured-collection",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "testimonial_placeholder_5": {
+      "type": "multicolumn",
+      "settings": {
+        "color_scheme": "scheme-1"
+      },
+      "blocks": {
+        "quote_1": {
+          "type": "column",
+          "settings": {
+            "title": "A word from your customers",
+            "text": "<p>[Placeholder — replace with a real customer quote. Atelier never invents testimonials.]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "quote_1"
+      ]
+    },
+    "newsletter_6": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    }
+  },
+  "order": [
+    "hero_0",
+    "rich_text_1",
+    "featured_collection_2",
+    "image_with_text_3",
+    "featured_collection_4",
+    "testimonial_placeholder_5",
+    "newsletter_6"
+  ]
+}

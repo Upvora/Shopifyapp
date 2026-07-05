@@ -1,0 +1,55 @@
+{
+  "sections": {
+    "hero_0": {
+      "type": "image-banner",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "multicolumn_1": {
+      "type": "multicolumn",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "featured_product_2": {
+      "type": "featured-product",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "rich_text_3": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-5"
+      }
+    },
+    "featured_collection_4": {
+      "type": "featured-collection",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq_5": {
+      "type": "collapsible-content",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "newsletter_6": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    }
+  },
+  "order": [
+    "hero_0",
+    "multicolumn_1",
+    "featured_product_2",
+    "rich_text_3",
+    "featured_collection_4",
+    "faq_5",
+    "newsletter_6"
+  ]
+}
