@@ -24,13 +24,25 @@
         "color_scheme": "scheme-5"
       }
     },
-    "featured_collection_4": {
-      "type": "featured-collection",
+    "collection_list_4": {
+      "type": "collection-list",
       "settings": {
         "color_scheme": "scheme-2"
       }
     },
-    "newsletter_5": {
+    "featured_collection_5": {
+      "type": "featured-collection",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "trust_row_6": {
+      "type": "multicolumn",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "newsletter_7": {
       "type": "newsletter",
       "settings": {
         "color_scheme": "scheme-1"
@@ -42,7 +54,9 @@
     "featured_collection_1",
     "rich_text_2",
     "image_with_text_3",
-    "featured_collection_4",
-    "newsletter_5"
+    "collection_list_4",
+    "featured_collection_5",
+    "trust_row_6",
+    "newsletter_7"
   ]
 }

@@ -36,10 +36,34 @@
         "color_scheme": "scheme-1"
       }
     },
-    "newsletter_6": {
-      "type": "newsletter",
+    "testimonial_placeholder_6": {
+      "type": "multicolumn",
       "settings": {
         "color_scheme": "scheme-2"
+      },
+      "blocks": {
+        "quote_1": {
+          "type": "column",
+          "settings": {
+            "title": "A word from your customers",
+            "text": "<p>[Placeholder — replace with a real customer quote. Atelier never invents testimonials.]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "quote_1"
+      ]
+    },
+    "trust_row_7": {
+      "type": "multicolumn",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "newsletter_8": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-5"
       }
     }
   },
@@ -50,6 +74,8 @@
     "rich_text_3",
     "featured_collection_4",
     "faq_5",
-    "newsletter_6"
+    "testimonial_placeholder_6",
+    "trust_row_7",
+    "newsletter_8"
   ]
 }

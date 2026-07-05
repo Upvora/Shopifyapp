@@ -192,6 +192,8 @@ const PLAN_TO_DAWN: Record<string, string> = {
   newsletter: "newsletter",
   faq: "collapsible-content",
   "testimonial-placeholder": "multicolumn",
+  "collection-list": "collection-list",
+  "trust-row": "multicolumn",
 };
 
 /** Scheme rotation so adjacent sections alternate density (PRD §9). */

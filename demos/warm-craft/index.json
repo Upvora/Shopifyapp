@@ -42,16 +42,28 @@
         "quote_1"
       ]
     },
-    "featured_collection_5": {
-      "type": "featured-collection",
+    "collection_list_5": {
+      "type": "collection-list",
       "settings": {
         "color_scheme": "scheme-1"
       }
     },
-    "newsletter_6": {
-      "type": "newsletter",
+    "featured_collection_6": {
+      "type": "featured-collection",
       "settings": {
         "color_scheme": "scheme-2"
+      }
+    },
+    "faq_7": {
+      "type": "collapsible-content",
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "newsletter_8": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-5"
       }
     }
   },
@@ -61,7 +73,9 @@
     "featured_collection_2",
     "image_with_text_3",
     "testimonial_placeholder_4",
-    "featured_collection_5",
-    "newsletter_6"
+    "collection_list_5",
+    "featured_collection_6",
+    "faq_7",
+    "newsletter_8"
   ]
 }

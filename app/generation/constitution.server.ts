@@ -63,6 +63,8 @@ export interface Archetype {
   buttonStyle: "solid" | "outline";
   /** Fixed hero pattern per archetype (composition rule: hero is not free). */
   heroPattern: "full-bleed-scrim" | "split" | "type-led" | "banner-compact";
+  /** Header treatment per archetype — headers carry brand too. */
+  headerPattern: "centered-stack" | "hairline" | "standard" | "poster" | "cta";
   /** Imagery art direction for step 5 prompts. Always text-free. */
   imageryDirection: string;
   /** Generated humans banned (uncanny risk) → curated library instead. */
@@ -89,6 +91,7 @@ export const ARCHETYPES: Archetype[] = [
     cornerRadius: 0,
     buttonStyle: "outline",
     heroPattern: "full-bleed-scrim",
+    headerPattern: "centered-stack",
     imageryDirection:
       "cinematic photography, soft natural light, muted grade, negative space for composition — never text in image",
     allowGeneratedHumans: false,
@@ -97,8 +100,10 @@ export const ARCHETYPES: Archetype[] = [
       "rich-text",
       "featured-collection",
       "image-with-text",
-      "featured-collection",
+      "collection-list",
       "testimonial-placeholder",
+      "featured-collection",
+      "trust-row",
       "newsletter",
     ],
   },
@@ -119,6 +124,7 @@ export const ARCHETYPES: Archetype[] = [
     cornerRadius: 4,
     buttonStyle: "solid",
     heroPattern: "type-led",
+    headerPattern: "hairline",
     imageryDirection:
       "studio product photography on seamless neutral backgrounds, hard composition, consistent shadow direction",
     allowGeneratedHumans: false,
@@ -126,8 +132,10 @@ export const ARCHETYPES: Archetype[] = [
       "hero",
       "featured-collection",
       "rich-text",
-      "multicolumn",
       "featured-product",
+      "multicolumn",
+      "collection-list",
+      "trust-row",
       "newsletter",
     ],
   },
@@ -148,6 +156,7 @@ export const ARCHETYPES: Archetype[] = [
     cornerRadius: 12,
     buttonStyle: "solid",
     heroPattern: "split",
+    headerPattern: "standard",
     imageryDirection:
       "warm daylight, natural materials, texture close-ups, earthy grade, hands-at-work from curated library only",
     allowGeneratedHumans: false,
@@ -157,7 +166,9 @@ export const ARCHETYPES: Archetype[] = [
       "featured-collection",
       "image-with-text",
       "testimonial-placeholder",
+      "collection-list",
       "featured-collection",
+      "faq",
       "newsletter",
     ],
   },
@@ -178,6 +189,7 @@ export const ARCHETYPES: Archetype[] = [
     cornerRadius: 0,
     buttonStyle: "solid",
     heroPattern: "full-bleed-scrim",
+    headerPattern: "poster",
     imageryDirection:
       "flash-lit or high-contrast photography, saturated grade, urban context, graphic crops",
     allowGeneratedHumans: false,
@@ -186,7 +198,9 @@ export const ARCHETYPES: Archetype[] = [
       "featured-collection",
       "rich-text",
       "image-with-text",
+      "collection-list",
       "featured-collection",
+      "trust-row",
       "newsletter",
     ],
   },
@@ -207,6 +221,7 @@ export const ARCHETYPES: Archetype[] = [
     cornerRadius: 8,
     buttonStyle: "solid",
     heroPattern: "split",
+    headerPattern: "cta",
     imageryDirection:
       "clean macro product shots, cool neutral grade, clinical surfaces, no lifestyle clutter",
     allowGeneratedHumans: false,
@@ -217,6 +232,8 @@ export const ARCHETYPES: Archetype[] = [
       "rich-text",
       "featured-collection",
       "faq",
+      "testimonial-placeholder",
+      "trust-row",
       "newsletter",
     ],
   },
