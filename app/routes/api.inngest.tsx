@@ -1,0 +1,10 @@
+import { serve } from "inngest/remix";
+import { inngest } from "../inngest/client.server";
+import { functions } from "../inngest/functions.server";
+
+const handler = serve({
+  client: inngest,
+  functions,
+});
+
+export { handler as action, handler as loader };

@@ -1,0 +1,50 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+# Run `shopify app config link` after creating the app in the Partner Dashboard —
+# it fills in client_id and application_url for you.
+
+name = "Atelier — AI Store Designer"
+handle = "atelier-ai-store-designer"
+application_url = "https://atelier.example.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
+
+[access_scopes]
+# Minimum scopes for Atelier (PRD §7.1). write_themes additionally requires a
+# Shopify-granted exemption — see README "write_themes exemption" (PRD §7.2).
+scopes = "read_products,write_products,read_themes,write_themes,read_content,write_content,read_files,write_files,read_online_store_navigation,write_online_store_navigation,read_locales"
+
+[auth]
+redirect_urls = [
+  "https://atelier.example.com/auth/callback",
+  "https://atelier.example.com/auth/shopify/callback",
+  "https://atelier.example.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2025-10"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/data_request"]
+  uri = "/webhooks/customers/data_request"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/redact"]
+  uri = "/webhooks/customers/redact"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["shop/redact"]
+  uri = "/webhooks/shop/redact"
+
+[pos]
+embedded = false

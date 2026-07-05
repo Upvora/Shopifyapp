@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+// Shopify session storage — managed by
+// @shopify/shopify-app-session-storage-prisma. Do not modify.
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model Shop {
+  id            String         @id @default(cuid())
+  domain        String         @unique
+  installedAt   DateTime       @default(now())
+  uninstalledAt DateTime?
+  plan          String         @default("free")
+  planSyncedAt  DateTime?
+  projects      Project[]
+  ledger        CreditLedger[]
+}
+
+model Project {
+  id        String          @id @default(cuid())
+  shopId    String
+  name      String
+  archetype String
+  locale    String          @default("en")
+  brandKit  Json // tokens: palette, type pair, voice, logo file GID
+  themeGid  String? // gid://shopify/OnlineStoreTheme/...
+  status    String          @default("draft") // draft|generating|preview|published|failed
+  runs      GenerationRun[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  shop      Shop            @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+}
+
+model GenerationRun {
+  id         String    @id @default(cuid())
+  projectId  String
+  kind       String // full | section_remix | product_enrich
+  status     String // queued|running|succeeded|failed|cancelled
+  steps      Json // per-step status, timings, costs
+  costCents  Int       @default(0)
+  error      String?
+  createdAt  DateTime  @default(now())
+  finishedAt DateTime?
+  project    Project   @relation(fields: [projectId], references: [id])
+
+  @@index([projectId])
+}
+
+model CreditLedger {
+  id        String   @id @default(cuid())
+  shopId    String
+  kind      String // generation | remix | image
+  delta     Int // negative = spend
+  runId     String?
+  createdAt DateTime @default(now())
+  shop      Shop     @relation(fields: [shopId], references: [id])
+
+  @@index([shopId])
+}
+
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  topic     String
+  shop      String
+  payload   Json
+  processed Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([shop, topic])
+}
