@@ -13,8 +13,18 @@ if (
   delete process.env.HOST;
 }
 
-const host = new URL(process.env.SHOPIFY_APP_URL || "http://localhost")
-  .hostname;
+function parseHostname(value: string | undefined): string {
+  if (!value) return "localhost";
+  try {
+    return new URL(value).hostname;
+  } catch {
+    // Not a URL (e.g. HOST=0.0.0.0 leaking in from the platform) — the
+    // dev-server host config is irrelevant for production builds anyway.
+    return "localhost";
+  }
+}
+
+const host = parseHostname(process.env.SHOPIFY_APP_URL);
 
 let hmrConfig;
 if (host === "localhost") {
