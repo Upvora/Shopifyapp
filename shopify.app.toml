@@ -4,7 +4,7 @@
 
 name = "Atelier — AI Store Designer"
 handle = "atelier-ai-store-designer"
-application_url = "https://atelier.example.com"
+application_url = "https://shopifyapp-production-8587.up.railway.app"
 embedded = true
 
 [build]
@@ -18,9 +18,9 @@ scopes = "read_products,write_products,read_themes,write_themes,read_content,wri
 
 [auth]
 redirect_urls = [
-  "https://atelier.example.com/auth/callback",
-  "https://atelier.example.com/auth/shopify/callback",
-  "https://atelier.example.com/api/auth/callback"
+  "https://shopifyapp-production-8587.up.railway.app/auth/callback",
+  "https://shopifyapp-production-8587.up.railway.app/auth/shopify/callback",
+  "https://shopifyapp-production-8587.up.railway.app/api/auth/callback"
 ]
 
 [webhooks]
