@@ -26,15 +26,25 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 export const action = async ({ request }: Route.ActionArgs) => {
   const { session } = await authenticate.admin(request);
 
-  // Phase 0 acceptance check: one Inngest event round-trips.
-  const { ids } = await inngest.send(
-    pingEvent.create({
-      shopDomain: session.shop,
-      sentAt: new Date().toISOString(),
-    }),
-  );
-
-  return { eventId: ids[0] };
+  // Phase 0 acceptance check: one Inngest event round-trips. A missing or
+  // unreachable Inngest (e.g. INNGEST_EVENT_KEY not configured yet) must
+  // degrade to a message, never crash the page.
+  try {
+    const { ids } = await inngest.send(
+      pingEvent.create({
+        shopDomain: session.shop,
+        sentAt: new Date().toISOString(),
+      }),
+    );
+    return { eventId: ids[0], error: null };
+  } catch (error) {
+    console.error("Inngest send failed:", error);
+    return {
+      eventId: null,
+      error:
+        "Could not reach Inngest. Set INNGEST_EVENT_KEY and INNGEST_SIGNING_KEY (Inngest Cloud) or run the local dev server.",
+    };
+  }
 };
 
 export default function Index({ loaderData }: Route.ComponentProps) {
@@ -93,6 +103,9 @@ export default function Index({ loaderData }: Route.ComponentProps) {
           <s-paragraph>
             Event sent — id: <s-text type="strong">{fetcher.data.eventId}</s-text>
           </s-paragraph>
+        )}
+        {fetcher.data?.error && (
+          <s-banner tone="warning">{fetcher.data.error}</s-banner>
         )}
       </s-section>
     </s-page>
