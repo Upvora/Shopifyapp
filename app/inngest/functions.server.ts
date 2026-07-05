@@ -47,7 +47,9 @@ export const storeGenerate = inngest.createFunction(
     id: "store-generate",
     triggers: [storeGenerateRequested],
     concurrency: [
-      { limit: 10 }, // global cap
+      // Inngest free plan caps concurrency at 5; raise toward the PRD's
+      // global cap of 10 after upgrading the Inngest plan.
+      { limit: 5 },
       { limit: 1, key: "event.data.shopDomain" }, // per-shop
     ],
     onFailure: async ({ event }) => {
