@@ -62,9 +62,7 @@ for (const archetype of ARCHETYPES) {
 
   // 4. Builders must produce coherent JSON
   const settingsData = buildSettingsData(archetype.id);
-  const schemeCount = Object.keys(
-    (settingsData.current as Record<string, never>)["color_schemes"],
-  ).length;
+  const schemeCount = Object.keys(settingsData.current.color_schemes).length;
   if (schemeCount !== 5) fail(`expected 5 color schemes, got ${schemeCount}`);
   const index = buildIndexTemplate(archetype.id);
   if (index.order.length !== archetype.defaultPlan.length) {
